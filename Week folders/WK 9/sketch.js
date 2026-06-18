@@ -50,6 +50,17 @@ function draw() {
     }
   }
   prevFrame = capture.get(0, 0, capture.width, capture.height);
+
+  // Hint text — visible for 20 seconds, fades out in the last 2 seconds
+  let elapsed = millis();
+  if (elapsed < 20000) {
+    let alpha = elapsed > 18000 ? map(elapsed, 18000, 20000, 200, 0) : 200;
+    noStroke();
+    fill(255, alpha);
+    textSize(14);
+    textAlign(CENTER, BOTTOM);
+    text("move in front of your camera to trigger effects", width / 2, height - 24);
+  }
 }
 
 class Dot {

@@ -105,11 +105,13 @@ function draw() {
     }
   }
 	
+  let elapsed = millis();
+  let timeFade = elapsed < 20000 ? (elapsed > 18000 ? map(elapsed, 18000, 20000, 1, 0) : 1) : 0;
   noStroke();
   textAlign(CENTER, BOTTOM);
-  textSize(30);
-  fill(255, 255, 255, map(intensity, 0, 0.3, 180, 0));  
-  text('move closer to activate', width / 2, height - 10);
+  textSize(20);
+  fill(255, 255, 255, map(intensity, 0, 0.3, 180, 0) * timeFade);
+  text('point your camera at yourself — move closer to activate', width / 2, height - 24);
 }
 
 function gotResult(results) {

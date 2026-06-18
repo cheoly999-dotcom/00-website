@@ -31,6 +31,19 @@ function draw() {
       count++;
     }
   }
+
+  // Hint text — visible for 20 seconds, fades out in the last 2 seconds
+  let elapsed = millis();
+  let fadeStart = 18000;
+  let fadeEnd = 20000;
+  if (elapsed < fadeEnd) {
+    let alpha = elapsed > fadeStart ? map(elapsed, fadeStart, fadeEnd, 200, 0) : 200;
+    noStroke();
+    fill(0, alpha);
+    textSize(14);
+    textAlign(CENTER, BOTTOM);
+    text("click anywhere to shuffle colors & patterns", width / 2, height - 24);
+  }
 }
 
 function drawPattern(x, y, count) {

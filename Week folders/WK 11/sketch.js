@@ -30,6 +30,17 @@ function draw() {
   }
 
   blendMode(BLEND);
-  t1 += 0.03; 
+  t1 += 0.03;
   t2 += 0.04;
+
+  // Hint text — visible for 20 seconds, fades out in the last 2 seconds
+  let elapsed = millis();
+  if (elapsed < 20000) {
+    let alpha = elapsed > 18000 ? map(elapsed, 18000, 20000, 200, 0) : 200;
+    noStroke();
+    fill(255, alpha);
+    textSize(14);
+    textAlign(CENTER, BOTTOM);
+    text("generative animation — sit back and enjoy", width / 2, height - 24);
+  }
 }

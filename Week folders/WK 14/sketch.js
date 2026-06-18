@@ -47,6 +47,8 @@ function draw() {
     circle(b.x, b.y, b.size);
   }
 
+  drawHint();
+
   if (phase === 'icing') {
     drawPalette();
 
@@ -227,4 +229,15 @@ function mousePressed() {
 
 function gotHands(results) {
   hands = results;
+}
+
+function drawHint() {
+  let elapsed = millis();
+  if (elapsed >= 20000 || phase === 'eating') return;
+  let alpha = elapsed > 18000 ? map(elapsed, 18000, 20000, 200, 0) : 200;
+  noStroke();
+  fill(80, alpha);
+  textSize(14);
+  textAlign(CENTER, BOTTOM);
+  text("raise your index finger to ice the cookie — pick colors from the left palette", width / 2, height - 24);
 }

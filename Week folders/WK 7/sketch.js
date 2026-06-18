@@ -14,15 +14,26 @@ function mousePressed() {
 
 function draw() {
   background('#ffffff10');  // 트레일 이펙트
-  for (let i = 0; i < vine.length; i++) {  
-    let v = vine[i];                      
+  for (let i = 0; i < vine.length; i++) {
+    let v = vine[i];
 
-    if (v.isDone()) {             
-      vine.splice(i, 1);               
-    } else {                           
-      v.show();                         
-      v.update();                   
+    if (v.isDone()) {
+      vine.splice(i, 1);
+    } else {
+      v.show();
+      v.update();
     }
+  }
+
+  // Hint text — visible for 20 seconds, fades out in the last 2 seconds
+  let elapsed = millis();
+  if (elapsed < 20000) {
+    let alpha = elapsed > 18000 ? map(elapsed, 18000, 20000, 180, 0) : 180;
+    noStroke();
+    fill(0, alpha);
+    textSize(14);
+    textAlign(CENTER, BOTTOM);
+    text("click anywhere to create rings", width / 2, height - 24);
   }
 }
 
