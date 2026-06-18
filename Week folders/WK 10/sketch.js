@@ -7,6 +7,11 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
 }
 
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+  if (state === "effect") buildChars();
+}
+
 function draw() {
   background(255);
 
@@ -39,6 +44,11 @@ function drawEffectScreen() {
     c.display();
   }
 
+  fill(180);
+  noStroke();
+  textSize(16);
+  textAlign(CENTER, BOTTOM);
+  text("press enter to restart", width / 2, height - 30);
 }
 
 function keyPressed() {
@@ -50,7 +60,7 @@ function keyPressed() {
       inputWord = inputWord.slice(0, -1);
     }
   } else {
-    if (keyCode === ESCAPE) {
+    if (keyCode === ENTER || keyCode === ESCAPE) {
       state = "input";
       inputWord = "";
       chars = [];

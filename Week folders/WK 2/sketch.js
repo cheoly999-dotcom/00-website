@@ -1,9 +1,19 @@
 function setup() {
-  createCanvas(1000, 1400);
+  createCanvas(windowWidth, windowHeight);
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
 }
 
 function draw() {
-  background (0);
+  background(0);
+
+  // Scale and center the original 1000x1400 design to fit the window
+  let s = min(windowWidth / 1000, windowHeight / 1400);
+  translate((windowWidth - 1000 * s) / 2, (windowHeight - 1400 * s) / 2);
+  scale(s);
+
   ellipseMode(CENTER);
 
   //1st circle

@@ -11,16 +11,25 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(1000, 1000);
+  createCanvas(windowWidth, windowHeight);
   noFill();
+  buildFlaps();
+}
 
-  cols = ceil(width/(flapWidth*1));
-  rows = ceil(height/(flapWidth*1));
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+  flaps = [];
+  buildFlaps();
+}
 
-  for(let i=0; i<cols; i++) {
-    for(let j=0; j<rows; j++) {
-      let x = i*(flapWidth*1.8);
-      let y = j*(flapWidth*1.8);
+function buildFlaps() {
+  cols = ceil(width / (flapWidth * 1));
+  rows = ceil(height / (flapWidth * 1));
+
+  for (let i = 0; i < cols; i++) {
+    for (let j = 0; j < rows; j++) {
+      let x = i * (flapWidth * 1.8);
+      let y = j * (flapWidth * 1.8);
       let flap = new Flap(x, y);
       flaps.push(flap);
     }
